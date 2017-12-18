@@ -1,0 +1,51 @@
+version: '2'
+
+services:
+
+  elasticsearch:
+    build:
+      context: elasticsearch/
+    restart: always
+    expose:
+     - "9200"
+    ports:
+      - "9200:9200"
+    networks:
+      - wikiparser
+    environment:
+      ES_JAVA_OPTS: "-Xmx512m -Xms512m"
+
+  kibana:
+    build: kibana/
+    restart: always
+    volumes:
+      - ./kibana/config/:/usr/share/kibana/config
+    expose:
+     - "5601"
+    ports:
+      - "5601:5601"
+    networks:
+      - wikiparser
+    depends_on:
+      - elasticsearch
+
+  gethistoryfiles:
+    depends_on:
+      - elasticsearch
+    build:
+      context: gethistory/
+    networks:
+      - wikiparser
+
+  processfile:
+    depends_on:
+      - elasticsearch
+    build:
+      context: processfile/
+    networks:
+      - wikiparser
+
+networks:
+
+  wikiparser:
+    driver: bridge
