@@ -1,5 +1,7 @@
 # jacobsanford/wikiHistoryParser
-Parse a Wikimedia's anonymous page edit history for specific IP ranges.
+Process and browse a Wikimedia's anonymous page edit history for specific IP ranges.
+
+![Browsing edits](img/demo.png)
 
 ## Requirements
 * [docker](https://www.docker.com)
@@ -9,18 +11,18 @@ Parse a Wikimedia's anonymous page edit history for specific IP ranges.
 Parsing the entire history of a language's wiki pages takes significant computational resources and will temporarily consume large amounts of storage and bandwidth. Although the ```processQueue.sh``` script [cleans up orphaned images and volumes with extreme prejudice](https://github.com/JacobSanford/wikiHistoryParser/blob/master/processQueue.sh#L12), expect to require (conservatively) ```MAX_THREADS * 100GB``` of disk space while processing the files. The final storage requirements are minimal.
 
 ## Quick Start
-### Populate the wiki edit history page dump file queue
+### Populate the wiki edit history page file queue
 
 ```
 docker-compose up
 ```
 
-### Process a single page dump file
+### Process a single page history archive file
 ```
 docker-compose run processfile
 ```
 
-### Process many/all page dump files
+### Process many/all page history archive files
 Edit the ```processQueue.sh``` script to alter variables to suit your needs, and run it.
 
 ```
@@ -30,7 +32,7 @@ Edit the ```processQueue.sh``` script to alter variables to suit your needs, and
 ### View the edits
 The ```docker-compose.yml``` file deploys a vanilla Kibana instance that can be used to browse and filter the ElasticSearch data. You can access that via http://localhost:5601.
 
-### Update the wiki edit history dump file queue
+### Update the wiki page edit history page file queue
 At a later time, you may wish to queue the new files that have been added with recent edits.
 
 ```
