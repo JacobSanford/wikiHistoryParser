@@ -1,5 +1,5 @@
 # jacobsanford/wikiHistoryParser
-Process and browse a Wikimedia's anonymous page edit history for specific IP ranges.
+Easily process and browse a Wikimedia's anonymous page edit history for specific IP ranges.
 
 ![Browsing edits](img/demo.png)
 
@@ -12,18 +12,19 @@ Parsing the entire history of a language's wiki pages takes significant computat
 
 ## Quick Start
 ### Populate the wiki edit history page file queue
-
+Fetch a list of archive .gz files to parse, storing them in the ElasticSearch index.
 ```
 docker-compose up
 ```
 
 ### Process a single page history archive file
+Grab a single file from the index and process it.
 ```
 docker-compose run processfile
 ```
 
 ### Process many/all page history archive files
-Edit the ```processQueue.sh``` script to alter variables to suit your needs, and run it.
+It is likely that you would like to parse the entire history rather than a single file. To do so, edit the ```processQueue.sh``` script to alter variables to suit your needs, and run it:
 
 ```
 ./processQueue.sh

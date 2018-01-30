@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
+# Process many wikimedia page archive files.
+
+# The number of files to process at once.
 MAX_THREADS=20
+
+# The maximum number of files to process.
 MAX_FILES_COUNT=1300
+
+# The time to sleep after launching a thread before launching another.
 SLEEP_TIME=120
 
 SPAWNED_COUNT=0
