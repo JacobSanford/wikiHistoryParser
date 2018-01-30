@@ -17,6 +17,9 @@ Fetch a list of archive .gz files to parse, storing them in the ElasticSearch in
 docker-compose up
 ```
 
+### Define IP ranges to parse
+Change the ```processfile/src/FilterIpRanges.py``` file to set the CIDR ranges you wish to parse.
+
 ### Process a single page history archive file
 Grab a single file from the index and process it.
 ```
